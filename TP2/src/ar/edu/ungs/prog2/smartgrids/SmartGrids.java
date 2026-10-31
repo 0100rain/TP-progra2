@@ -1,6 +1,7 @@
 
 package ar.edu.ungs.prog2.smartgrids;
 
+import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -207,7 +208,8 @@ public class SmartGrids implements ISmartGrids {
             resultado.add(
                 planta.getNombre()
                 + " (" + (planta.isActiva() ? "ACTIVA" : "INACTIVA") + "): "
-                + planta.getFechaPuestaEnFuncionamiento()
+                + planta.getFechaPuestaEnFuncionamiento().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"))
+                
             );
         }
 
@@ -493,7 +495,7 @@ public class SmartGrids implements ISmartGrids {
                         resultado.append(", ");
                     }
 
-                    resultado.append(horasInsuficientes.get(i));
+                    resultado.append(String.format("%02d",horasInsuficientes.get(i)));
                 }
             }
         }
